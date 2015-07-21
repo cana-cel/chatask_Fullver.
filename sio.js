@@ -150,7 +150,7 @@ function sio(server) {
 
         //タスク部
         //タスクの表示
-        Task.find(function(err,items){
+        Task.find({groupname: roomName}, function(err,items){
             if(err){console.log(err);}
             //接続したユーザにメモのデータを送る。
             socket.emit('display',items);

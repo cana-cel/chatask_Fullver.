@@ -36,6 +36,11 @@ jQuery(function($) {
 			//name:name,
 			//text:inputText
 		//};
+		var now = new Date();
+		var nowHour = now.getHours();
+		var nowMin = now.getMinutes();
+		if(nowHour < 10){ nowHour = "0"+nowHour; }
+		if(nowMin < 10){ nowMin = "0"+nowMin; }
 		socket.emit('create', {
 			text: inputText
 		});
