@@ -37,7 +37,7 @@ exports.logon = function (req, res) {
 		name = req.session.session;
 		console.log(req.session);
 		console.log('^^');
-		res.render('logon_ok', { title: 'Hello, world', items: name});		
+		res.render('chat', { title: 'Hello, world', items: name});		
 	}
 	//セッションがないとき
 	else {
