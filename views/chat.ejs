@@ -6,14 +6,22 @@
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<h1><%= groupname %> のページ</h1>
+	<h2>user: <%= name %></h2>
+    <p>タスクメモするよ</p>
+    <div>
+    	<textarea cols="30" rows="6" id="input_text"/></textarea>
+		<input type="button" id="create-button" value="create" />
+	</div>
+	<div id="field"></div>
 	<div id="room_contain" class="contain">
-		<p>ルーム名　：</p>
+<!-- 		<p>ルーム名　：</p>
 		<input type="text" id="room_input" style="width:100px;"><br>
 		<p>ユーザー名： </p><input type="text" id="name_input" style="width:100px;"><br>
-		<button onclick="enterRoom()" style="width:207px; margin-top:10px; display: block;">入室</button>
+		<button onclick="enterRoom()" style="width:207px; margin-top:10px; display: block;">入室</button> -->
 		<div id="roomInfo"></div>
-		<div id="onlineUserCount"></div>
-		<div id="roomList"></div>
+		<!-- <div id="onlineUserCount"></div> -->
+		<!-- <div id="roomList"></div> -->
 	</div>
 
 	<div id="message_contain" class="contain">
@@ -28,9 +36,10 @@
 			<div id="member"></div>
 		</div>
 	</div>
-
+	<p><a href="/logout">Logout</a></p>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="/task.js"></script>
 	<script src="/chatask.js"></script>
 
 </body>

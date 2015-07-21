@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
 var routes = require('./routes');
+var sio = require('./sio.js');
+var debug = require('debug')('chatask');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
+var date = require('date-utils');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 //ビューの設定
 app.set('view engine', 'ejs');
@@ -24,9 +28,9 @@ app.use(session({
     resave: true,
     store: new MongoStore({
         db: 'session',
-        host: 'localhost',
+        host: 'localhost'
         //保存期間
-        clear_interval: 60 * 60
+        //clear_interval: 60 * 60
     }),
     cookie: {
         httpOnly: false,
@@ -61,6 +65,10 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 })
 
+app.set('port',  process.env.PORT || 3000);
 
+var server = app.listen(app.get('port'), function() {
+    debug('Express server listening on port ' + server.address().port);
+});
 
-app.listen(3000);
+sio(server);

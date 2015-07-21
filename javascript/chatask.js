@@ -1,12 +1,25 @@
+//ソケット接続の要求
 var socketio = io.connect('http://localhost:3000');
 
-		socketio.on("connect", function(data) {
-			addRoomInfo("入室したいルーム名とユーザー名を入力してください。");
+console.log("client ok");
+		
+		//接続が確立
+		socketio.on("connect", function() {
+			//var userName = "a";
+			//var roomName = "b";
+			// //enterイベント発火、データ送信
+			// socketio.emit("enter",{
+			// 	userName: userName,
+			// 	roomName: roomName
+			// });
+			//var name = <%- JSON.stringify(name) %>;
+			//var groupname = <%- JSON.stringify(groupname) %>;
+			addRoomInfo("" + "さんは" + "" + "にログインしました");
 		});
 
 		// function enterRoom() {
-		// 	var userName = $('#name_input').val();
-		// 	var roomName = $('#room_input').val();
+		// 	var userName = "task";
+		// 	var roomName = "Task";
 		// 	socketio.emit("enter",{
 		// 		userName: userName,
 		// 		roomName: roomName

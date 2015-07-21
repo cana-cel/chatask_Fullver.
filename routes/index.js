@@ -3,11 +3,6 @@ var model = require('../model');
 var Group = model.Group;
 var Member = model.Member;
 var Chat = model.Chat;
-var express = require('express');
-var app = express();
-var date = require('date-utils');
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 //exports.hoge で　hoge を外で使えるようにしている
 
@@ -79,137 +74,13 @@ exports.logon = function (req, res) {
 					})
 					//セッションスタート
 					req.session.session = newMember["name"];
-					res.render('chat');
-					console.log('started session');
-					Chat_part(newMember);
+					exports.MemberName = newMember["name"];
+					exports.GroupName = newMember["groupname"];
+					res.render('chat', {name: newMember["name"], groupname: newMember["groupname"]});
+					console.log('started session');					
 				}
 			}
 	});}
 
 }
 
-function Chat_part(newMember) {
-	//socketio
-	var userCount = 0;
-	var roomList = new Object();
-	var jsonBoth = {};
-	var userList = new Object(); //ユーザーの名前とsocketidを紐づけるもの
-
-	io.on('connection', function(socket){
-		console.log('a user connected');
-
-		userCount++;
-		io.sockets.emit("port", userCount);
-
-		updateRoomList(roomList);
-		function updateRoomList(roomList) {
-			if(roomList) { io.sockets.emit("roomList", roomList); }
-		}
-
-		function enter() {
-			socket.name = newMember["name"];
-			var roomName = newMember["groupname"];
-			if (!roomList[roomName]) {
-				createRoom(roomName);
-			} else if(roomList[roomName]) {
-				var roomUserCount = roomList[roomName]
-				enterRoom(roomName);
-			}
-		}
-
-		socket.on("sendMessage", function(data) {
-			var roomName = socket.roomName;
-			var now = nowDate()
-			io.sockets.to(roomName).emit("recieveMessage", {
-				message: data.message,
-				name: socket.name,
-				date: now
-			});
-			var chat = new Chat();
-			chat.message = data.message;
-			chat.name = socket.name;
-			chat.date = now;
-			chat.room = socket.roomName;
-			chat.save(function(err) {
-				if(err) { console.log(err); }
-			});
-		});
-
-		socket.on("deleteDB", function() {
-			socket.emit('dropDB');
-			User.remove({  __v : 0 }, function(err, result){
-	    			if (err) {
-	        			res.send({'error': 'An error has occurred - ' + err});
-	    			} else {
-	        			console.log('UserRemoveSuccess: ' + result + ' document(s) deleted');
-	    			}
-	 		});
-			Chat.remove({  __v : 0 }, function(err, result){
-	    			if (err) {
-	        			res.send({'error': 'An error has occurred - ' + err});
-	    			} else {
-	        			console.log('CharRemoveSuccessSuccess: ' + result + ' document(s) deleted');
-	    			}
-	 		});
-		})
-
-		socket.on("disconnect", function() {
-			userCount--;
-			var roomName = socket.roomName;
-			if (roomName) {
-				roomList[roomName]--;
-				socket.leave(roomName);
-				io.sockets.to(roomName).emit("recieveMessage", {
-					message: "退出",
-					name: socket.name,
-					date: nowDate()
-				});
-				updateRoomList(roomList);
-			}
-			console.log("ウェブサイトから退室：現在" + userCount + "人");
-			io.sockets.emit("port", userCount);
-		});
-
-		function nowDate() {
-			var now = new Date()
-			return now.toFormat("YYYY/MM/DD HH24:MI");
-		}
-
-		function createRoom(roomName) {
-			roomList[roomName] = 1;
-			console.log("create ChatRoom : " + roomName + " ( " + roomList[roomName] + "members )");
-			joinRoom(roomName);
-		}
-
-		function enterRoom(roomName) {
-			roomList[roomName]++;
-			console.log("\"" + socket.name + "\" enter ChatRoom : " + roomName + " ( " + roomList[roomName] + "members )");
-			joinRoom(roomName);
-		}
-
-		function joinRoom(roomName) {
-			socket.roomName = roomName;
-			socket.join(roomName);
-			Chat.find({room:socket.roomName},function(err, docs) {
-	  			socket.emit('openMessage', docs);
-	  			io.sockets.to(roomName).emit("recieveMessage", {
-					message: "入室",
-					name: socket.name,
-					date: nowDate()
-				});
-	  		});
-			updateRoomList(roomList);
-			// var user = new User();
-			// user.name = socket.name;
-			// user.room = socket.roomName;
-			// user.save(function(err) {
-			// 	if(err) { console.log(err); }
-			// });
-			// User.find({room:socket.roomName},function(err, docs) {
-	  // 			io.sockets.to(roomName).emit("roomMember", docs);
-	  // 		});
-		}
-
-	});
-
-}
