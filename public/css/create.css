@@ -3,6 +3,32 @@
 body {
   text-align: center;
   font-family: 'Noto Sans Japanese', sans-serif; }
+  body header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px; }
+    body header .logo {
+      width: 178px;
+      float: left;
+      margin: 0; }
+    body header .button {
+      float: right;
+      padding: 15px 20px;
+      cursor: pointer;
+      border-radius: 7px;
+      margin: 0 20px;
+      background-color: #330000; }
+      body header .button a {
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        font-size: 1.2em; }
+    body header .button:hover {
+      background-color: maroon;
+      transition: .2s; }
+  body header::after {
+    content: "";
+    display: block;
+    clear: both; }
   body .inputfield {
     margin: 0 auto;
     width: 500px; }

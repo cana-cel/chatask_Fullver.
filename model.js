@@ -12,6 +12,7 @@ var Group = new mongoose.Schema({
     groupname: {type: String, validate: [validator, "Empty Error"]},
     password: {type: String, validate: [validator, "Empty Error"]},
     name: {type: String, validate: [validator, "Empty Error"]},
+    project: {type: String, validate: [validator, "Empty Error"]},
     created: {type: Date, default: Date.now}
 })
 

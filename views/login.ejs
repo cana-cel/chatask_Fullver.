@@ -2,20 +2,25 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/create.css">
+    <title>chaTask - ログイン</title>
 </head>
 <body>
-
+	<header>
+		<a href="/"><img src="img/logo.png" class="logo" alt="チャッタスクのロゴ画像です"></a>
+		<button class="button"><a href="/create">チームを作る</a></button>
+	</header>
 	<form action="/logon" method="POST">
-		<h1></h1>
+		<h1>ログイン</h1>
 		
-		<fieldest>
-			<p><label>groupname</label><input type="text" name="groupname"></p>
-			<p><label>password</label><input type="password" name="password"></p>
-			<p><label>name</label><input type="text" name="name"></p>
-		</fieldest>
+		<div class="inputfield">
+			<label>チーム名</label><input class="inputtext" type="text" name="groupname"><br>
+			<label>パスワード</label><input class="inputtext" type="password" name="password"><br>
+			<label>ユーザ名</label><input class="inputtext" type="text" name="name"><br>
+		</div>
 
-		<input type="submit" value="Login">
+		<input type="submit" value="ログイン！">
 
 	</form>
 	

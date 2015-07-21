@@ -5,6 +5,7 @@ var Member = model.Member;
 var Chat = model.Chat;
 
 var GroupName = "";
+var ProjectName = "";
 
 //exports.hoge で　hoge を外で使えるようにしている
 
@@ -13,11 +14,11 @@ exports.index = function (req, res) {
 };
 
 exports.create = function (req, res) {
-	res.render('create', {title: 'New Entry'});
+	res.render('create');
 };
 
 exports.login = function (req, res) {
-	res.render('login', {title: 'New Entry'})
+	res.render('login');
 };
 
 exports.create_done = function (req, res) {
@@ -28,7 +29,7 @@ exports.create_done = function (req, res) {
 			console.log(err);
 		}
 		else {
-			res.render('create_done', {items: newGroup["groupname"]});
+			res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"]});
 		}
 	})
 }
@@ -36,18 +37,24 @@ exports.create_done = function (req, res) {
 exports.logon = function (req, res) {
 	//セッションを保持しているとき
 	if (req.session.session) {
+		//表示用
 		name = req.session.session;
 		groupname = GroupName;
-		console.log(req.session);
-		console.log('^^');
-		res.render('chat', {name: name, groupname: groupname});		
+		projectname = ProjectName;
+
+		//console.log(req.session);
+		//console.log('^^');
+		res.render('logon', {name: name, groupname: groupname, project: projectname});		
 	}
 	//セッションがないとき
 	else {
 		var newGroup = new Group(req.body);
 		var newMember = new Member(req.body);
+		console.log(newGroup["project"]);
 		//グループ名とパスワードの判定
 		Group.find({groupname: newGroup["groupname"], password: newGroup["password"]}, function (err, items) {
+			console.log("^^");
+			console.log(items);
 			if (err) {
 				console.log(err);
 			}
@@ -80,9 +87,9 @@ exports.logon = function (req, res) {
 					GroupName = newMember["groupname"];
 					exports.MemberName = newMember["name"];
 					exports.GroupName = newMember["groupname"];
-					res.render('chat', {name: newMember["name"], groupname: newMember["groupname"]});
+					res.render('logon', {name: newMember["name"], groupname: newMember["groupname"], projectname: ProjectName});
 					console.log('started session');			
-					console.log(GroupName);
+					//console.log(GroupName);
 				}
 			}
 	});}
