@@ -64,6 +64,7 @@ console.log("client ok");
  		});
 
  		socketio.on("roomMember", function(userArray) {
+ 			console.log(userArray);
  			if(userArray.length == 0) {
  				return;
  			} else {

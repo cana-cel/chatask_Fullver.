@@ -4,6 +4,8 @@ var Group = model.Group;
 var Member = model.Member;
 var Chat = model.Chat;
 
+var GroupName = "";
+
 //exports.hoge で　hoge を外で使えるようにしている
 
 exports.index = function (req, res) {
@@ -35,9 +37,10 @@ exports.logon = function (req, res) {
 	//セッションを保持しているとき
 	if (req.session.session) {
 		name = req.session.session;
+		groupname = GroupName;
 		console.log(req.session);
 		console.log('^^');
-		res.render('chat', { title: 'Hello, world', items: name});		
+		res.render('chat', {name: name, groupname: groupname});		
 	}
 	//セッションがないとき
 	else {
@@ -74,10 +77,12 @@ exports.logon = function (req, res) {
 					})
 					//セッションスタート
 					req.session.session = newMember["name"];
+					GroupName = newMember["groupname"];
 					exports.MemberName = newMember["name"];
 					exports.GroupName = newMember["groupname"];
 					res.render('chat', {name: newMember["name"], groupname: newMember["groupname"]});
-					console.log('started session');					
+					console.log('started session');			
+					console.log(GroupName);
 				}
 			}
 	});}

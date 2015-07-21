@@ -4,9 +4,7 @@ jQuery(function($) {
 	
 	//createイベントを受信した時、html上にメモを作成する。
 	socket.on('display',function(taskData){
-		console.log(taskData);
 		taskData.forEach(function(data){
-			console.log(data);
 			createTask(data);
 		});
 	});

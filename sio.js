@@ -5,7 +5,7 @@ var session = require('express-session');
 var model = require('./model');
 var index = require('./routes/index');
 //var http = require('http').Server(app);
-
+var Group = model.Group;
 var Member = model.Member;
 var Chat = model.Chat;
 var Task = model.Task;
@@ -73,23 +73,24 @@ function sio(server) {
             });
         });
 
-        socket.on("deleteDB", function() {
-            socket.emit('dropDB');
-            User.remove({  __v : 0 }, function(err, result){
-                    if (err) {
-                        res.send({'error': 'An error has occurred - ' + err});
-                    } else {
-                        console.log('UserRemoveSuccess: ' + result + ' document(s) deleted');
-                    }
-            });
-            Chat.remove({  __v : 0 }, function(err, result){
-                    if (err) {
-                        res.send({'error': 'An error has occurred - ' + err});
-                    } else {
-                        console.log('CharRemoveSuccessSuccess: ' + result + ' document(s) deleted');
-                    }
-            });
-        })
+        //全削除
+        // socket.on("deleteDB", function() {
+        //     socket.emit('dropDB');
+        //     User.remove({  __v : 0 }, function(err, result){
+        //             if (err) {
+        //                 res.send({'error': 'An error has occurred - ' + err});
+        //             } else {
+        //                 console.log('UserRemoveSuccess: ' + result + ' document(s) deleted');
+        //             }
+        //     });
+        //     Chat.remove({  __v : 0 }, function(err, result){
+        //             if (err) {
+        //                 res.send({'error': 'An error has occurred - ' + err});
+        //             } else {
+        //                 console.log('CharRemoveSuccessSuccess: ' + result + ' document(s) deleted');
+        //             }
+        //     });
+        // })
 
         socket.on("disconnect", function() {
             userCount--;
@@ -143,9 +144,9 @@ function sio(server) {
             // user.save(function(err) {
             //  if(err) { console.log(err); }
             // });
-            // User.find({room:socket.roomName},function(err, docs) {
-      //            io.sockets.to(roomName).emit("roomMember", docs);
-      //        });
+            Member.find({groupname: GroupName},function(err, docs) {
+                  io.sockets.to(roomName).emit("roomMember", docs);
+              });
         }
 
         //タスク部
