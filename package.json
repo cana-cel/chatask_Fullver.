@@ -8,10 +8,13 @@
   "dependencies": {
     "body-parser": "1.13.1",
     "connect-mongo": "^0.8.1",
+    "date-utlis": "*",
     "debug": "^2.2.0",
     "ejs": "2.3.1",
     "express": "4.12.4",
     "express-session": "^1.11.3",
-    "mongoose": "4.0.5"
+    "http": "*",
+    "mongoose": "4.0.5",
+    "socket.io": "*"
   }
 }
