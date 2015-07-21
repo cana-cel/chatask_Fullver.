@@ -3,15 +3,24 @@
 body {
   text-align: center;
   font-family: 'Noto Sans Japanese', sans-serif; }
-  body .inputfield .inputtext {
-    display: block;
-    width: 100px;
-    float: left;
-    text-align: right;
-    padding-right: 15px; }
-  body input {
-    display: block;
-    width: 200px;
-    float: left; }
+  body .inputfield {
+    margin: 0 auto;
+    width: 500px; }
+    body .inputfield .inputtext, body .inputfield label {
+      display: block;
+      float: left;
+      font-size: 1.5em;
+      margin-bottom: 1em; }
+    body .inputfield .inputtext {
+      text-align: left;
+      width: 200px; }
+    body .inputfield label {
+      display: block;
+      width: 200px;
+      float: left;
+      padding-right: 15px;
+      text-align: right; }
+    body .inputfield br {
+      clear: both; }
 
 /*# sourceMappingURL=create.css.map */

@@ -5,20 +5,33 @@ body {
     text-align: center;
     font-family: 'Noto Sans Japanese', sans-serif;
     .inputfield {
-        
-        .inputtext {
+        margin: 0 auto;
+        width: 500px;
+        .inputtext, label {
             display: block;
-            width: 100px;
             float: left;
-            text-align: right;
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        .inputtext {
+            text-align: left;
+            width: 200px;
+        }
+
+        label {
+            display: block;
+            width: 200px;
+            float: left;
             padding-right: 15px;
+            text-align: right;
+        }
+
+        br {
+            clear: both;
         }
         
     }
 
-    input {
-        display: block;
-        width: 200px;
-        float: left;
-    }
+
 }
