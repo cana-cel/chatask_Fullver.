@@ -57,7 +57,7 @@ function sio(server) {
 
         socket.on("sendMessage", function(data) {
             var roomName = socket.roomName;
-            var now = nowDate()
+            var now = nowDate();
             io.sockets.to(roomName).emit("recieveMessage", {
                 message: data.message,
                 name: socket.name,
@@ -153,20 +153,36 @@ function sio(server) {
         Task.find(function(err,items){
             if(err){console.log(err);}
             //接続したユーザにメモのデータを送る。
-            socket.emit('create',items);
+            socket.emit('display',items);
         });
 
         //createイベントを受信した時、データベースにTaskを追加する。
         //memoDataは{text:String,position:{left:Number,top:Number}}の型
-        socket.on('create',function(taskData){
-            //モデルからインスタンス作成
-            var task = new Task(taskData);
-            //データベースに保存。
-            task.save(function(err){
-            if(err){ return; }
-            socket.broadcast.json.emit('create',[task]);
-            socket.emit('create',[task]);
+        socket.on('create',function(data){
+            var roomName = socket.roomName;
+            var now = nowDate();
+            io.sockets.to(roomName).emit("create_display", {
+                text: data.text,
+                name: socket.name,
+                date: now,
+                groupname: socket.roomName
             });
+            var task = new Task();
+            task.text = data.text;
+            task.name = socket.name;
+            task.date = now;
+            task.groupname = socket.roomName;
+            task.save(function(err) {
+                if(err) { console.log(err); }
+            });
+            //モデルからインスタンス作成
+            // var task = new Task(taskData);
+            // //データベースに保存。
+            // task.save(function(err){
+            // if(err){ return; }
+            // socket.broadcast.json.emit('create',[task]);
+            // socket.emit('create',[task]);
+            // });
         });
 
         //update-textイベントを受信した時、Memoのtextをアップデートする。

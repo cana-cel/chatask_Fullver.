@@ -3,8 +3,10 @@ jQuery(function($) {
 	var socket = io.connect('http://localhost:3000');
 	
 	//createイベントを受信した時、html上にメモを作成する。
-	socket.on('create',function(taskData){
+	socket.on('display',function(taskData){
+		console.log(taskData);
 		taskData.forEach(function(data){
+			console.log(data);
 			createTask(data);
 		});
 	});
@@ -27,21 +29,26 @@ jQuery(function($) {
 	//createボタンが押された時、新規タスクを作成するようにcreateイベントを送信する。
 	$('#create-button').click(function(){
 		var inputText = $("#input_text").val();
-		var date = new Date();
-		var now = new Date();
-		var taskData = {
+		//var date = new Date();
+		//var now = new Date();
+		//var taskData = {
 			//groupname:groupname,
 			//name:name,
-			text:inputText,
-			date:date,
-		};
-		socket.emit('create',taskData);
+			//text:inputText
+		//};
+		socket.emit('create', {
+			text: inputText
+		});
 		//console.log(memoData.group_id);
 		//console.log(memoData.text);
 		//console.log(memoData.date);
 		$('#input_text').val('');
 
 	});
+
+	socket.on("create_display", function(data) {
+		createTask(data);
+	})
 	//taskDataを元にメモをhtml上に生成
 	//taskDataは{_id:String,text:String,position:{left:Number,top:Number}}の型
 	var createTask = function(taskData){
@@ -56,7 +63,7 @@ jQuery(function($) {
 			.attr('id',id)
 			.append($('<div class="settings">')
 				.append($('</p>')
-					.text(taskData.text + "(" + taskData.date + taskData.date[1] + ")")
+					.text(taskData.text + "  " + taskData.name + "(" + taskData.date + ")")
 			)
 			.append('<a href="#" class="complete-button">完了</a>')
 			.append('<a href="#" class="remove-button">消去</a>')
@@ -65,11 +72,11 @@ jQuery(function($) {
 		element.hide().fadeIn();
 		$('#field').append(element);
 		
-		//テキストが変更された場合、update-textイベントを送る。
-		var $text = element.find('.text');
-		$text.keyup(function(){
-			socket.emit('update-text',{_id:id,text:$text.val()});
-		});
+		// テキストが変更された場合、update-textイベントを送る。
+		// var $text = element.find('.text');
+		// $text.keyup(function(){
+		// 	socket.emit('update-text',{_id:id,text:$text.val()});
+		// });
 
 		//完了ボタンを押した場合completeイベントを送る
 		element.find('.complete-button').click(function(){
