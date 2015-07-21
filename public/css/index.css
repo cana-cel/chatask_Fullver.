@@ -1,0 +1,35 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+body {
+  text-align: center;
+  font-family: 'Noto Sans Japanese', sans-serif; }
+  body .main #logo {
+    width: 100%;
+    height: auto;
+    max-width: 510px; }
+  body .main #logo2 {
+    width: 100%;
+    height: auto;
+    max-width: 300px; }
+  body .linkbuttons {
+    margin: 70px 0; }
+    body .linkbuttons .buttons {
+      padding: 30px;
+      cursor: pointer;
+      border-radius: 7px;
+      margin: 0 20px; }
+      body .linkbuttons .buttons a {
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        font-size: 2.5em; }
+    body .linkbuttons #createbutton {
+      background-color: #CC6600; }
+    body .linkbuttons #loginbutton {
+      background-color: #00CC66; }
+    body .linkbuttons #createbutton:hover {
+      background-color: #ff8c1a; }
+    body .linkbuttons #loginbutton:hover {
+      background-color: #1aff8c; }
+
+/*# sourceMappingURL=index.css.map */
