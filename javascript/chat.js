@@ -2,7 +2,7 @@
 var socketio = io.connect('http://localhost:3000');
 
 console.log("client ok");
-		
+
 		//接続が確立
 		socketio.on("connect", function() {
 			//var userName = "a";
@@ -68,7 +68,7 @@ console.log("client ok");
  			if(userArray.length == 0) {
  				return;
  			} else {
-				$('#roomMember').empty();
+				$('#member').empty();
 				userArray.forEach(function(data) {
 					var user =  data.name;
  					var domMeg = document.createElement('div');
