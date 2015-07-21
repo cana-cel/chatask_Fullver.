@@ -26,7 +26,7 @@ function sio(server) {
     console.log("sio start");
     //var sio = io.listen(server);
     //sio.set('transports', [ 'websocket' ]);
-    
+
     //接続が確立
     io.on('connection', function(socket){
         console.log('a user connected');
@@ -129,7 +129,7 @@ function sio(server) {
         function joinRoom(roomName) {
             socket.roomName = roomName;
             socket.join(roomName);
-            Chat.find({room:socket.roomName},function(err, docs) {
+            Chat.find({groupname:socket.roomName},function(err, docs) {
                 socket.emit('openMessage', docs);
                 io.sockets.to(roomName).emit("recieveMessage", {
                     message: "入室",
@@ -202,7 +202,7 @@ function sio(server) {
             task.remove();
             socket.broadcast.json.emit('remove',data);
             });
-        });        
+        });
 
     });
 }

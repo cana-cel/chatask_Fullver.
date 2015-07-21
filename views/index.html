@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>タスク管理×チャット</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<div id="message_contain" class="contain">
+		<div id="message_form">
+			<p>メッセージ：</p>
+			<input type="text" id="message_input" style="width:200px;">
+			<button onclick="sendMessage()" style="width:50px;">送信</button>
+			<button onclick="deleteDB()" style="width:50px;">全削除</button>
+		</div>
+		<div id="message"></div>
+		<div id="member_contain">
+			<div id="member"></div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script src="/chatask.js"></script>
+
+</body>
+</html>
