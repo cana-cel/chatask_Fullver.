@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,yEAAiE;AACzE,IAAK;EACD,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,gCAAgC;EAC7C,SAAS,EAAE,KAAK",
+"sources": ["create_done.scss"],
+"names": [],
+"file": "create_done.css"
+}

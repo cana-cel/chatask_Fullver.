@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
-  padding-top: 20px;
+  padding-top: 30px;
   text-align: center;
   font-family: 'Noto Sans Japanese', sans-serif;
   background: url(../img/bgc.jpg) center center/cover no-repeat fixed; }

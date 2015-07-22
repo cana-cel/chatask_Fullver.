@@ -25,7 +25,7 @@ exports.create_done = function (req, res) {
 	var newGroup = new Group(req.body);
 
 	//空白のとき、チームを作らない
-	if(newGroup["groupname"] == "" || newGroup["password"]) {
+	if(newGroup["groupname"] == "" || newGroup["password"]　== "") {
 		res.render('create_ng');
 	}
 	else {
