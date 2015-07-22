@@ -37,16 +37,11 @@ function sio(server) {
         console.log(MemberName);
 
         userCount++;
-        io.sockets.emit("port", userCount);
-
-        updateRoomList(roomList);
-        function updateRoomList(roomList) {
-            if(roomList) { io.sockets.emit("roomList", roomList); }
-        }
 
         //enterイベント、dataを受け取る
 
         socket.name = MemberName;
+        userList[socket.name] = socket.id;
         var roomName = GroupName;
         if (!roomList[roomName]) {
             createRoom(roomName);
@@ -94,6 +89,7 @@ function sio(server) {
 
         socket.on("disconnect", function() {
             userCount--;
+            delete userList[socket.name];
             var roomName = socket.roomName;
             if (roomName) {
                 roomList[roomName]--;
@@ -103,10 +99,9 @@ function sio(server) {
                     name: socket.name,
                     date: nowDate()
                 });
-                updateRoomList(roomList);
             }
+            updateRoomMember();
             console.log("ウェブサイトから退室：現在" + userCount + "人");
-            io.sockets.emit("port", userCount);
         });
 
         function nowDate() {
@@ -137,15 +132,15 @@ function sio(server) {
                     date: nowDate()
                 });
             });
-            updateRoomList(roomList);
-            // var user = new User();
-            // user.name = socket.name;
-            // user.room = socket.roomName;
-            // user.save(function(err) {
-            //  if(err) { console.log(err); }
-            // });
-            Member.find({groupname: GroupName},function(err, docs) {
-                  io.sockets.to(roomName).emit("roomMember", docs);
+            updateRoomMember();
+        }
+
+        function updateRoomMember() {
+             Member.find({groupname: GroupName},function(err, docs) {
+                io.sockets.to(roomName).emit("roomMember", {
+                    groupMembers: docs,
+                    onlineMembers: userList
+                });
               });
         }
 

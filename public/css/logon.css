@@ -1,9 +1,165 @@
-div.contain {
-			margin: 20px;
-		}
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 
-		div#message_contain {
-			/*visibility: hidden;*/
+body {
+	font-family: 'Noto Sans Japanese', sans-serif;
+	margin: 0 ;
+	padding: 0 ;
+	font-size: 17px ;
+	line-height: 1.618;
+	color: #222;
+}
+
+
+div.left {
+	background-color: #4682b4;
+	width: 18%;
+	height: 630px;
+	float: left;
+	padding: 15px;
+	margin-left: 10px;
+	margin-top: 10px;
+	border-radius: 10px;
+	position: relative;
+}
+div.left h1 {
+	margin: 0;
+	color: #f0ffff;
+	font-size: 40px;
+}
+div.left h2 {
+	margin: 0;
+	font-size: 25px;
+}
+div.left h3 {
+	margin: 0;
+}
+p#logout {
+	position: absolute;
+	bottom: 0;
+}
+p#logout a {
+	text-decoration: none;
+	color: #222;
+	font-size: 20px;
+}
+div#member_contain {
+	margin-top: 50px;
+}
+div#member {
+	margin-left: 0px;
+}
+div#member p {
+	display: inline;
+}
+
+
+div.right {
+	width: 78%;
+	float: right;
+	margin-top: 10px;
+}
+div.right h2 {
+	margin: 0;
+}
+div.task {
+	background-color: rgba(200,239,234,0.35);
+	padding: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+}
+div#field {
+	overflow: auto;
+	height: 175px;
+}
+div#field a {
+	text-decoration: none;
+}
+div#field button {
+	margin: 0px 3px;
+	border-radius: 3px;
+	background-color: #fff;
+	border: 1px solid #eee;
+	font-size: 12px;
+	color: #000080;
+}
+div#field p {
+	display: inline;
+	}
+div#task_form {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+div#task_form textarea#input_text {
+	height: 25px;
+	width: 80%;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-size: 17px;
+	padding: 5px;
+	position: absolute;
+	bottom: 0;
+}
+div#task_form #create-button {
+	background-color: #000080;
+	border: 1px solid #eee;
+	font-size: 25px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 5%;
+	color: white;
+	padding: 4px 33px;
+}
+div#task_form p {
+	display: inline;
+}
+
+div.chat {
+	margin-top: 10px;
+	background-color: rgba(50,250,50,0.15);
+	padding: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+}
+div#message_form {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+div#message_form textarea#message_input {
+	height: 25px;
+	width: 80%;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-size: 17px;
+	padding: 5px;
+	position: absolute;
+	bottom: 0;
+}
+div#message_form button {
+	background-color: #2e8b57;
+	border: 1px solid #eee;
+	font-size: 25px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 5%;
+	color: white;
+	padding: 4px 40px;
+}
+div#message_form p {
+	display: inline;
+}
+div#message {
+	overflow: auto;
+	height: 310px;
+}
+
+/*div.contain {
+			margin: 20px;
 		}
 
 		div#roomInfo {
@@ -56,4 +212,5 @@ div.contain {
 		}
 
 		p { display: inline; }
-	</style>
+
+*/
