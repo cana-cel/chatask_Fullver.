@@ -68,7 +68,7 @@ jQuery(function($) {
 				.append($('</p>')
 					.text(taskData.text + "  " + taskData.name + "(" + taskData.date + ")")
 			)
-			.append('<button><a href="#" class="complete-button">完了</a></button>')
+			.append('<button><a href="#" class="remove-button">完了</a></button>')
 			.append('<button><a href="#" class="remove-button">消去</a></button>')
 
 			);
