@@ -1,8 +1,12 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
+  padding-top: 20px;
   text-align: center;
-  font-family: 'Noto Sans Japanese', sans-serif; }
+  font-family: 'Noto Sans Japanese', sans-serif;
+  background: url(../img/bgc.jpg) center center/cover no-repeat fixed; }
+  body .main .catchcopy {
+    color: white; }
   body .main #logo {
     width: 100%;
     height: auto;
@@ -17,19 +21,27 @@ body {
       padding: 30px;
       cursor: pointer;
       border-radius: 7px;
-      margin: 0 20px; }
+      margin: 0 20px;
+      box-shadow: 0 1px 0 #888888;
+      transition: .2s;
+      border-color: white; }
       body .linkbuttons .buttons a {
         font-weight: bold;
         text-decoration: none;
         color: white;
         font-size: 2.5em; }
     body .linkbuttons #createbutton {
-      background-color: #CC6600; }
+      background: linear-gradient(rgba(204, 102, 0, 0.5), rgba(204, 61, 0, 0.5));
+      transition: 0.2s; }
     body .linkbuttons #loginbutton {
-      background-color: #00CC66; }
+      background-color: rgba(0, 204, 102, 0.5); }
     body .linkbuttons #createbutton:hover {
-      background-color: #ff8c1a; }
+      background-color: #cc6600;
+      transition: .2s; }
     body .linkbuttons #loginbutton:hover {
-      background-color: #1aff8c; }
+      background-color: #00cc66;
+      transition: .2s; }
+  body footer p {
+    color: white; }
 
 /*# sourceMappingURL=index.css.map */

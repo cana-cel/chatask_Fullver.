@@ -44,7 +44,7 @@ exports.logon = function (req, res) {
 
 		//console.log(req.session);
 		//console.log('^^');
-		res.render('logon', {name: name, groupname: groupname, project: projectname});		
+		res.render('logon', {name: name, groupname: groupname, projectname: projectname});		
 	}
 	//セッションがないとき
 	else {
@@ -55,6 +55,9 @@ exports.logon = function (req, res) {
 		Group.find({groupname: newGroup["groupname"], password: newGroup["password"]}, function (err, items) {
 			console.log("^^");
 			console.log(items);
+			items.forEach(function (item) {
+				ProjectName = item.project;
+			})
 			if (err) {
 				console.log(err);
 			}

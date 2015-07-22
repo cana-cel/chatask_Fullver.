@@ -1,19 +1,26 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
+    padding-top: 20px;
     text-align: center;
     font-family: 'Noto Sans Japanese', sans-serif;
+    background: url(../img/bgc.jpg) center center / cover no-repeat fixed;
     .main {
-        #logo {
-            width: 100%;
-            height: auto;
-            max-width: 510px;       
+        .catchcopy {
+            color: white;
         }
-        #logo2 {
-            width: 100%;
-            height: auto;
-            max-width: 300px;
-        }
+
+            #logo {
+                width: 100%;
+                height: auto;
+                max-width: 510px;     
+            }
+            #logo2 {
+                width: 100%;
+                height: auto;
+                max-width: 300px;
+            }
+        
     }
     .linkbuttons {
         margin: 70px 0;
@@ -22,6 +29,9 @@ body {
             cursor: pointer;
             border-radius: 7px;
             margin: 0 20px;
+            box-shadow: 0 1px 0 rgba(136, 136, 136, 1);
+            transition: .2s;
+            border-color: white;
             a {
                 font-weight: bold;
                 text-decoration: none;
@@ -30,16 +40,23 @@ body {
             }
         }
         #createbutton {
-            background-color: #CC6600;
+            background: linear-gradient(rgba(204, 102, 0, .5), rgba(204, 61, 0, .5));
+            transition: .2s
+            //background-color: rgba(204, 102, 0, .5);
         }
         #loginbutton {
-            background-color: #00CC66;
+            background-color: rgba(0, 204, 102, .5);
         }
         #createbutton:hover {
-            background-color: lighten(#CC6600, 15%);
+            background-color: rgba(204, 102, 0, 1);
+            transition: .2s;
         }
         #loginbutton:hover {
-            background-color: lighten(#00CC66, 15%);
+            background-color: rgba(0, 204, 102, 1);
+            transition: .2s;
         }
+    }
+    footer p {
+        color: white;
     }
 }
