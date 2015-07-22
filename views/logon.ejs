@@ -4,40 +4,43 @@
 	<meta charset="UTF-8">
 	<title>タスク管理×チャット</title>
 	<link rel="stylesheet" href="/css/logon.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-	<h1><%= groupname %> のページ</h1>
-	<h2>名前: <%= name %></h2>
-	<h2>プロジェクト名: <%= projectname %></h2>
-    <p>タスクメモするよ</p>
-    <div>
-    	<textarea cols="100" rows="1" id="input_text"/></textarea>
-		<input type="button" id="create-button" value="create" />
+
+<div class="left">
+	<h1><%= groupname %> </h1>
+	<h2><%= projectname %></h2>
+	<h3 id="name"><i class="fa fa-comment"></i> <%= name %></h3>
+	<div id="member_contain">
+		<h2>Member</h2>
+		<div id="member"></div>
+
 	</div>
-	<div id="field"></div>
-	<div id="room_contain" class="contain">
-<!-- 		<p>ルーム名　：</p>
-		<input type="text" id="room_input" style="width:100px;"><br>
-		<p>ユーザー名： </p><input type="text" id="name_input" style="width:100px;"><br>
-		<button onclick="enterRoom()" style="width:207px; margin-top:10px; display: block;">入室</button> -->
-		<!-- <div id="roomInfo"></div> -->
-		<!-- <div id="onlineUserCount"></div> -->
-		<!-- <div id="roomList"></div> -->
+	<p id="logout"><a href="/logout">Logout</a></p>
+</div>
+
+<div class="right">
+	<div class="task">
+		<h2>Task</h2>
+		<div id="field"></div>
+    		<div id="task_form">
+    			<textarea cols="100" rows="1" id="input_text"/></textarea>
+    			<button id="create-button"> create </button>
+			<!-- <p><i class="fa fa-plus" id="create-button"></i></p> -->
+		</div>
+	</div>
+	<div class="chat">
+		<h2>Chat</h2>
+		<div id="message"></div>
+		<div id="message_form">
+			<textarea cols="100" rows="1" id="message_input"/></textarea>
+			<button onclick="sendMessage()">  send  </button>
+		</div>
 	</div>
 
-	<div id="message_contain" class="contain">
-		<div id="message_form">
-			<p>メッセージ：</p>
-			<input type="text" id="message_input" style="width:200px;">
-			<button onclick="sendMessage()" style="width:50px;">送信</button>
-			<!-- <button onclick="deleteDB()" style="width:50px;">全削除</button> -->
-		</div>
-		<div id="message"></div>
-		<div id="member_contain">
-			<div id="member"></div>
-		</div>
-	</div>
-	<p><a href="/logout">Logout</a></p>
+</div>
+
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/task.js"></script>

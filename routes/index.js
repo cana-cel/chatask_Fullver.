@@ -51,7 +51,9 @@ exports.logon = function (req, res) {
 
 		//console.log(req.session);
 		//console.log('^^');
+
 		res.render('logon', {name: name, groupname: groupname, projectname: projectname});		
+
 	}
 	//セッションがないとき
 	else {
@@ -98,7 +100,7 @@ exports.logon = function (req, res) {
 					exports.MemberName = newMember["name"];
 					exports.GroupName = newMember["groupname"];
 					res.render('logon', {name: newMember["name"], groupname: newMember["groupname"], projectname: ProjectName});
-					console.log('started session');			
+					console.log('started session');
 					//console.log(GroupName);
 				}
 			}
