@@ -26,6 +26,7 @@ body {
       transition: .2s;
       border-color: white; }
       body .linkbuttons .buttons a {
+        font-family: 'Noto Sans Japanese', sans-serif;
         font-weight: bold;
         text-decoration: none;
         color: white;

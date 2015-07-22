@@ -18,6 +18,7 @@ body {
       margin: 0 20px;
       background-color: #330000; }
       body header .button a {
+        font-family: 'Noto Sans Japanese', sans-serif;
         font-weight: bold;
         text-decoration: none;
         color: white;
@@ -31,7 +32,8 @@ body {
     clear: both; }
   body .inputfield {
     margin: 0 auto;
-    width: 500px; }
+    width: 500px;
+    margin-bottom: 30px; }
     body .inputfield .inputtext, body .inputfield label {
       display: block;
       float: left;
@@ -48,5 +50,18 @@ body {
       text-align: right; }
     body .inputfield br {
       clear: both; }
+  body .submit {
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin: 0 20px;
+    color: #330000;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: 'Noto Sans Japanese', sans-serif;
+    background-color: #fff; }
+  body .submit:hover {
+    background-color: #eee;
+    transition: .2s; }
 
 /*# sourceMappingURL=create.css.map */

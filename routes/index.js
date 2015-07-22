@@ -23,15 +23,22 @@ exports.login = function (req, res) {
 
 exports.create_done = function (req, res) {
 	var newGroup = new Group(req.body);
-	//新しいグループを作成
-	newGroup.save(function (err, items) {
-		if (err) {
-			console.log(err);
-		}
-		else {
-			res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"]});
-		}
-	})
+
+	//空白のとき、チームを作らない
+	if(newGroup["groupname"] == "" || newGroup["password"]) {
+		res.render('create_ng');
+	}
+	else {
+		//新しいグループを作成
+		newGroup.save(function (err, items) {
+			if (err) {
+				console.log(err);
+			}
+			else {
+				res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"]});
+			}
+		})
+	}
 }
 
 exports.logon = function (req, res) {

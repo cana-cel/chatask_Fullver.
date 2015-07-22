@@ -21,6 +21,7 @@ body {
             margin: 0 20px;
             background-color: #330000;
             a {
+                font-family: 'Noto Sans Japanese', sans-serif;
                 font-weight: bold;
                 text-decoration: none;
                 color: white;
@@ -42,6 +43,7 @@ body {
     .inputfield {
         margin: 0 auto;
         width: 500px;
+        margin-bottom: 30px;
         .inputtext, label {
             display: block;
             float: left;
@@ -66,6 +68,23 @@ body {
             clear: both;
         }
         
+    }
+
+    .submit {
+        padding: 15px 20px;
+        cursor: pointer;
+        border-radius: 7px;
+        margin: 0 20px;
+        color: #330000;
+        font-size: 1.2em;
+        font-weight: bold;
+        font-family: 'Noto Sans Japanese', sans-serif;
+        background-color: #fff;
+    }
+
+    .submit:hover {
+        background-color: #eee;
+        transition: .2s;
     }
 
 
