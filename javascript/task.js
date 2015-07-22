@@ -1,7 +1,7 @@
 jQuery(function($) {
 	"use strict";
 	var socket = io.connect('http://localhost:3000');
-	
+
 	//createイベントを受信した時、html上にメモを作成する。
 	socket.on('display',function(taskData){
 		taskData.forEach(function(data){
@@ -68,13 +68,13 @@ jQuery(function($) {
 				.append($('</p>')
 					.text(taskData.text + "  " + taskData.name + "(" + taskData.date + ")")
 			)
-			.append('<a href="#" class="complete-button">完了</a>')
-			.append('<a href="#" class="remove-button">消去</a>')
-			
+			.append('<button><a href="#" class="complete-button">完了</a></button>')
+			.append('<button><a href="#" class="remove-button">消去</a></button>')
+
 			);
 		element.hide().fadeIn();
 		$('#field').append(element);
-		
+
 		// テキストが変更された場合、update-textイベントを送る。
 		// var $text = element.find('.text');
 		// $text.keyup(function(){
