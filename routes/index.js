@@ -35,7 +35,7 @@ exports.create_done = function (req, res) {
 				console.log(err);
 			}
 			else {
-				//console.log(typeof req.body.name.length);
+				//保存用
 				var names = req.body.name;
 				var len = req.body.name.length;
 				for (var i = 0; i < len; i++) {
@@ -62,10 +62,6 @@ exports.logon = function (req, res) {
 		name = req.session.session;
 		groupname = GroupName;
 		projectname = ProjectName;
-
-		//console.log(req.session);
-		//console.log('^^');
-
 		res.render('logon', {name: name, groupname: groupname, projectname: projectname});		
 
 	}
@@ -81,11 +77,10 @@ exports.logon = function (req, res) {
 			if (err) {
 				console.log(err);
 			}
-			else (items) {
+			else {
 				//一致するものがないとき…ログイン失敗
 				if (items.length == 0) {
 					res.render('logon_ng');
-					console.log(items);
 				}
 				//チーム名とパスワードが一致したとき
 				else {
@@ -96,7 +91,7 @@ exports.logon = function (req, res) {
 							res.render('logon_ng');
 						}
 						//login成功
-						else (items) {
+						else {
 						//セッションスタート
 							req.session.session = newMember["name"];
 							GroupName = newMember["groupname"];
