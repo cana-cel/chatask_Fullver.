@@ -23,12 +23,14 @@ exports.login = function (req, res) {
 
 exports.create_done = function (req, res) {
 	var newGroup = new Group(req.body);
+	var newMember = new Member(req.body);
 
 	//空白のとき、チームを作らない
 	if(newGroup["groupname"] == "" || newGroup["password"]　== "") {
 		res.render('create_ng');
 	}
 	else {
+		newGroup["leader"] = req.body.name[0];
 		//新しいグループを作成
 		newGroup.save(function (err, items) {
 			if (err) {
@@ -38,18 +40,18 @@ exports.create_done = function (req, res) {
 				//保存用
 				var names = req.body.name;
 				var len = req.body.name.length;
+				//メンバー情報を保存
 				for (var i = 0; i < len; i++) {
 					req.body.name = names[i];
-					var newMember = new Member(req.body);
 					//console.log(req.body);
 					newMember.save(function (err, items) {
 						if(err) {
 							console.log(err);
 						}
-					})
+					});
 				}
-				//console.log(newGroup);
-				res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"]});
+				console.log(newGroup);
+				res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"], leader: newGroup["leader"]});
 			}
 		})
 	}

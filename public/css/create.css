@@ -48,20 +48,33 @@ body {
       float: left;
       padding-right: 15px;
       text-align: right; }
-    body .inputfield br {
+    body .inputfield .addbutton {
+      display: block;
+      float: right;
+      margin-top: 0px; }
+    body .inputfield ol {
+      display: block;
+      float: left;
+      padding: 0;
+      margin: 0; }
+      body .inputfield ol li {
+        display: block; }
+        body .inputfield ol li .deletebutton {
+          float: left; }
+    body .inputfield .br, body .inputfield br {
       clear: both; }
-  body .submit {
-    padding: 15px 20px;
-    cursor: pointer;
-    border-radius: 7px;
-    margin: 0 20px;
-    color: #330000;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: 'Noto Sans Japanese', sans-serif;
-    background-color: #fff; }
-  body .submit:hover {
-    background-color: #eee;
-    transition: .2s; }
+    body .inputfield .submit {
+      padding: 15px 20px;
+      cursor: pointer;
+      border-radius: 7px;
+      margin: 0 20px;
+      color: #330000;
+      font-size: 1.2em;
+      font-weight: bold;
+      font-family: 'Noto Sans Japanese', sans-serif;
+      background-color: #fff; }
+    body .inputfield .submit:hover {
+      background-color: #eee;
+      transition: .2s; }
 
 /*# sourceMappingURL=create.css.map */

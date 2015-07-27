@@ -63,14 +63,33 @@ body {
             padding-right: 15px;
             text-align: right;
         }
+        
+        .addbutton {
+            display: block;
+            float: right;
+            margin-top: 0px;
+        }
 
-        br {
+        ol {
+            display: block;
+            float: left;
+            padding: 0;
+            margin: 0;
+            
+            li {
+                display: block;
+                //margin-bottom: 1em;
+                .deletebutton {
+                    float: left;
+                }
+            }
+        }
+
+        .br, br {
             clear: both;
         }
-        
-    }
 
-    .submit {
+        .submit {
         padding: 15px 20px;
         cursor: pointer;
         border-radius: 7px;
@@ -87,5 +106,7 @@ body {
         transition: .2s;
     }
 
+        
+    }
 
 }
