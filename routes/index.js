@@ -35,6 +35,20 @@ exports.create_done = function (req, res) {
 				console.log(err);
 			}
 			else {
+				//console.log(typeof req.body.name.length);
+				var names = req.body.name;
+				var len = req.body.name.length;
+				for (var i = 0; i < len; i++) {
+					req.body.name = names[i];
+					var newMember = new Member(req.body);
+					//console.log(req.body);
+					newMember.save(function (err, items) {
+						if(err) {
+							console.log(err);
+						}
+					})
+				}
+				//console.log(newGroup);
 				res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"]});
 			}
 		})
@@ -59,49 +73,40 @@ exports.logon = function (req, res) {
 	else {
 		var newGroup = new Group(req.body);
 		var newMember = new Member(req.body);
-		console.log(newGroup["project"]);
 		//グループ名とパスワードの判定
 		Group.find({groupname: newGroup["groupname"], password: newGroup["password"]}, function (err, items) {
-			console.log("^^");
-			console.log(items);
 			items.forEach(function (item) {
 				ProjectName = item.project;
 			})
 			if (err) {
 				console.log(err);
 			}
-			else {
+			else (items) {
 				//一致するものがないとき…ログイン失敗
 				if (items.length == 0) {
 					res.render('logon_ng');
 					console.log(items);
 				}
-				//一致したとき…ログイン成功
-				else{
-					//メンバーがすでに登録されているか？
+				//チーム名とパスワードが一致したとき
+				else {
+					//メンバー名の判定
 					Member.find({name: newMember["name"], groupname: newMember["groupname"]}, function (err, items) {
-						if (err) {
-							console.log(err);
+						//login失敗
+						if (items.length == 0) {
+							res.render('logon_ng');
 						}
-						else {
-							// 登録されてない
-							if (items.length == 0) {
-								newMember.save(function (err) {
-									if (err) {
-										console.log(err);
-									}
-								});
-							}
+						//login成功
+						else (items) {
+						//セッションスタート
+							req.session.session = newMember["name"];
+							GroupName = newMember["groupname"];
+							exports.MemberName = newMember["name"];
+							exports.GroupName = newMember["groupname"];
+							res.render('logon', {name: newMember["name"], groupname: newMember["groupname"], projectname: ProjectName});
+							console.log('started session');
+							//console.log(GroupName);
 						}
 					})
-					//セッションスタート
-					req.session.session = newMember["name"];
-					GroupName = newMember["groupname"];
-					exports.MemberName = newMember["name"];
-					exports.GroupName = newMember["groupname"];
-					res.render('logon', {name: newMember["name"], groupname: newMember["groupname"], projectname: ProjectName});
-					console.log('started session');
-					//console.log(GroupName);
 				}
 			}
 	});}
