@@ -11,17 +11,29 @@
         <a href="/"><img src="img/logo.png" alt="チャッタスクのロゴ画像です" class="logo"></a>
         <button class="button"><a href="/login">ログインする</a></button>
     </header>
-    <form action="/create2" method="POST">
+    <form action="/create_done" method="POST">
         <h1>チームを作る</h1>
         
         <div class="inputfield">
-            <label>チーム名</label><input class="inputtext" type="text" name="groupname"><br>
-            <label>プロジェクト名</label><input class="inputtext" type="text" name="project"><br>
-            <label>パスワード</label><input class="inputtext" type="password" name="password"><br>
-       
-        <input type="submit" value="つぎへ" class="submit">
+            <div>
+                <h2>1. チーム情報入力</h2>
+                <label>チーム名</label><input class="inputtext" type="text" name="groupname"><br>
+                <label>プロジェクト名</label><input class="inputtext" type="text" name="project"><br>
+                <label>パスワード</label><input class="inputtext" type="password" name="password"><br>
+            </div>
+            <div>
+                <h2>2. メンバー情報入力</h2>
+                <label>チームリーダー</label><input class="inputtext" type="text" name="name"><br>
+                <label>チームメンバー</label>
+                <button type="button" class="addbutton">追加</button>
+                <ol class="memberlist">
+                    <li class="member">
+                        <input class="inputtext" type="text" name="name">
+                    </li>
+                </ol>
+            </div>
+        <input type="submit" value="つくる！" class="submit">
         </div>
-        <p></p>
     </form>
     
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

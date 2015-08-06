@@ -44,6 +44,10 @@ body {
         margin: 0 auto;
         width: 500px;
         margin-bottom: 30px;
+
+        h2 {
+            text-align: left;
+        }
         .inputtext, label {
             display: block;
             float: left;

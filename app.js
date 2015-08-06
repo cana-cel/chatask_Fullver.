@@ -55,7 +55,6 @@ var loginCheck = function(req, res, next) {
 app.get('/', loginCheck, routes.index);
 app.get('/login', loginCheck,　routes.login);
 app.get('/create', routes.create);
-app.post('/create2', routes.create2);
 app.get('/logon', routes.logon);
 app.post('/logon', routes.logon);
 app.post('/create_done', routes.create_done);

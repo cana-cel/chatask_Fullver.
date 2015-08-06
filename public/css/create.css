@@ -34,6 +34,8 @@ body {
     margin: 0 auto;
     width: 500px;
     margin-bottom: 30px; }
+    body .inputfield h2 {
+      text-align: left; }
     body .inputfield .inputtext, body .inputfield label {
       display: block;
       float: left;

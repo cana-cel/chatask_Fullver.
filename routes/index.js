@@ -40,6 +40,7 @@ exports.create_done = function (req, res) {
 				//保存用
 				var names = req.body.name;
 				var len = req.body.name.length;
+				console.log(len);
 				//メンバー情報を保存
 				for (var i = 0; i < len; i++) {
 					req.body.name = names[i];
@@ -51,6 +52,7 @@ exports.create_done = function (req, res) {
 					});
 				}
 				console.log(newGroup);
+				console.log(newMember);
 				res.render('create_done', {groupname: newGroup["groupname"], project: newGroup["project"], leader: newGroup["leader"]});
 			}
 		})
@@ -64,8 +66,7 @@ exports.logon = function (req, res) {
 		name = req.session.session;
 		groupname = GroupName;
 		projectname = ProjectName;
-		res.render('logon', {name: name, groupname: groupname, projectname: projectname});		
-
+		res.render('logon', {name: name, groupname: groupname, projectname: projectname});
 	}
 	//セッションがないとき
 	else {
@@ -90,7 +91,7 @@ exports.logon = function (req, res) {
 					Member.find({name: newMember["name"], groupname: newMember["groupname"]}, function (err, items) {
 						//login失敗
 						if (items.length == 0) {
-							res.render('logon_ng');
+							res.render('logon_ng', {word: "^^"});
 						}
 						//login成功
 						else {
